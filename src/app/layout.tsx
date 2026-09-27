@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono } from 'next/font/google'
+import '@fontsource/ibm-plex-mono/latin-400.css'
+import '@fontsource/ibm-plex-mono/latin-700.css'
 import './globals.css'
-
-const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Password Generator',
@@ -16,9 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={jetBrainsMono.className}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
