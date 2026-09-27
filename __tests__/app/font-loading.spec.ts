@@ -10,9 +10,15 @@ describe('font loading', () => {
     const layout = readFileSync(layoutPath, 'utf8')
     const globals = readFileSync(globalsPath, 'utf8')
 
-    expect(layout).toContain('@ibm/plex-mono/css/ibm-plex-mono-all.css')
+    const packageJson = JSON.parse(
+      readFileSync(resolve(projectRoot, 'package.json'), 'utf8')
+    )
+
+    expect(layout).toContain('@fontsource/ibm-plex-mono/latin-400.css')
+    expect(layout).toContain('@fontsource/ibm-plex-mono/latin-700.css')
     expect(layout).not.toContain('next/font/google')
-    expect(existsSync(resolve(projectRoot, 'node_modules/@ibm/plex-mono'))).toBe(true)
+    expect(packageJson.dependencies['@fontsource/ibm-plex-mono']).toBeDefined()
+    expect(existsSync(resolve(projectRoot, 'node_modules/@fontsource/ibm-plex-mono'))).toBe(true)
     expect(globals).toContain("font-family: 'IBM Plex Mono'")
   })
 })
